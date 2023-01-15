@@ -28,7 +28,7 @@ export class FormRepository implements IFormRepository {
 
   async findAll(): Promise<FormEntity[]> {
     return await this.repository.find({
-      relations: ['user_id'],
+      relations: ['questions'],
     });
   }
 

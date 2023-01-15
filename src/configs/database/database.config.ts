@@ -8,5 +8,5 @@ export const connection: TypeOrmModuleOptions = {
   username: Envs.MYSQL_USERNAME,
   password: Envs.MYSQL_PASSWORD,
   database: Envs.MYSQL_DATABASE,
-  synchronize: false
+  synchronize: true,
 };
