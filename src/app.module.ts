@@ -1,6 +1,6 @@
 import { connection } from '@configs/database/database.config';
-import { ExampleEntity } from '@modules/example/domain/entities/example.entity';
-import { ExampleModule } from '@modules/example/example.module';
+import { UserEntity } from '@modules/user/domain/entities/user.entity';
+import { UserModule } from '@modules/user/user.module';
 import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthMiddleware } from '@shared/middlewares/auth.middleware';
@@ -9,11 +9,11 @@ import { AppService } from './app.service';
 
 @Module({
   imports: [
-    // TypeOrmModule.forRoot({
-    //   ...connection,
-    //   entities: [ExampleEntity],
-    // }),
-    // ExampleModule,
+    TypeOrmModule.forRoot({
+      ...connection,
+      entities: [UserEntity],
+    }),
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],

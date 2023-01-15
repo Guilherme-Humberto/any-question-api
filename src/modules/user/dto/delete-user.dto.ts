@@ -1,6 +1,6 @@
 import { IsNumber } from 'class-validator';
 
-export class DeleteExampleDto {
+export class DeleteUserDto {
   @IsNumber()
-  id: number;
+  user_id: number;
 }

@@ -6,13 +6,24 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('tbl_example')
-export class ExampleEntity {
+@Entity('tbl_user')
+export class UserEntity {
   @PrimaryGeneratedColumn()
-  id: number;
+  user_id: number;
 
   @Column()
   name: string;
+
+  @Column()
+  email: string;
+
+  @Column()
+  password: string;
+
+  @Column({
+    default: true
+  })
+  status: boolean;
 
   @CreateDateColumn()
   created_at: Date;
