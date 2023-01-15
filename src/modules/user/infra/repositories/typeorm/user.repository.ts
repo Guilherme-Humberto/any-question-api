@@ -32,18 +32,14 @@ export class UserRepository implements IUserRepository {
     const payload = {
       id: data.user_id,
       email: data.email,
-    }
+    };
 
     const options = {
       expiresIn: expiration,
       subject: String(data.user_id),
-    }
+    };
 
-    return sign(
-      payload,
-      secret,
-      options
-    );
+    return sign(payload, secret, options);
   }
 
   async create(data: UserEntity): Promise<UserEntity> {

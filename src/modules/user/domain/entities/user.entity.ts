@@ -21,7 +21,7 @@ export class UserEntity {
   password: string;
 
   @Column({
-    default: true
+    default: true,
   })
   status: boolean;
 
