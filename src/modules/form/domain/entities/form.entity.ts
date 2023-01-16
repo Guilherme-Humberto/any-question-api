@@ -8,6 +8,7 @@ import {
   JoinColumn,
   OneToMany,
 } from 'typeorm';
+import { v4 as uuid } from 'uuid'
 import { UserEntity } from '@modules/user/domain/entities/user.entity';
 import { QuestionEntity } from '@modules/question/domain/entities/question.entity';
 
@@ -21,6 +22,13 @@ export class FormEntity {
 
   @Column({ nullable: false })
   description: string;
+
+  @Column({
+    unique: true,
+    nullable: false,
+    default: uuid(),
+  })
+  form_code: string
 
   @Column({
     default: true,
