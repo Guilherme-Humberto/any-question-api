@@ -1,4 +1,6 @@
 import { connection } from '@configs/database/database.config';
+import { AnswerModule } from '@modules/answer/answer.module';
+import { AnswerEntity } from '@modules/answer/domain/entities/answer.entity';
 import { FormEntity } from '@modules/form/domain/entities/form.entity';
 import { FormModule } from '@modules/form/form.module';
 import { QuestionEntity } from '@modules/question/domain/entities/question.entity';
@@ -15,11 +17,12 @@ import { AppService } from './app.service';
   imports: [
     TypeOrmModule.forRoot({
       ...connection,
-      entities: [UserEntity, FormEntity, QuestionEntity],
+      entities: [UserEntity, FormEntity, QuestionEntity, AnswerEntity],
     }),
     UserModule,
     FormModule,
     QuestionModule,
+    AnswerModule,
   ],
   controllers: [AppController],
   providers: [AppService],
