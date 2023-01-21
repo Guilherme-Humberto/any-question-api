@@ -1,4 +1,5 @@
 import { DeckEntity } from '@modules/deck/domain/entities/deck.entity';
+import { TagEntity } from '@modules/tag/domain/entities/tag.entity';
 import { UserEntity } from '@modules/user/domain/entities/user.entity';
 import {
   PrimaryGeneratedColumn,
@@ -28,8 +29,6 @@ export class FlashcardEntity {
   @Column({ nullable: false })
   back: string;
 
-  // tags: TagEntity[];
-
   @Column({
     type: 'enum',
     enum: StatusEnum,
@@ -39,7 +38,10 @@ export class FlashcardEntity {
 
   @JoinColumn({ name: 'deck' })
   @ManyToOne(() => DeckEntity, deck => deck.flashcards)
-  deck: DeckEntity;
+  deck: number;
+
+  @OneToMany(() => TagEntity, tag => tag.flashcard)
+  tags: TagEntity[]
 
   @CreateDateColumn()
   created_at: Date;

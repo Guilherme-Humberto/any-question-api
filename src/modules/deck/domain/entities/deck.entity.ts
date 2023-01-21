@@ -37,7 +37,7 @@ export class DeckEntity {
 
   @JoinColumn({ name: "user" })
   @ManyToOne(() => UserEntity, user => user.decks, { onDelete: 'CASCADE' })
-  user: UserEntity
+  user: number
 
   @OneToMany(() => FlashcardEntity, user => user.deck)
   flashcards: FlashcardEntity[]

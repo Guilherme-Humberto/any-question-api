@@ -29,11 +29,12 @@ export class FlashcardRepository implements IFlashcardRepository {
 
   async findAll(): Promise<FlashcardEntity[]> {
     return await this.repository.find({
-      relations: ['deck']
+      relations: ['deck', 'tags']
     });
   }
 
-  async findOne(where: object): Promise<FlashcardEntity> {
-    return await this.repository.findOne({ where });
+  async findOne(parameter: object): Promise<FlashcardEntity> {
+    console.log(parameter)
+    return await this.repository.findOne({ where: parameter });
   }
 }

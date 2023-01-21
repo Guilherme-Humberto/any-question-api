@@ -1,5 +1,5 @@
 import { DeckEntity } from '@modules/deck/domain/entities/deck.entity';
-import { IsBoolean, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateFlashcardDto {
   @IsString()
@@ -13,5 +13,5 @@ export class CreateFlashcardDto {
   status: string;
 
   @IsNumber()
-  deck: DeckEntity;
+  deck: number;
 }
