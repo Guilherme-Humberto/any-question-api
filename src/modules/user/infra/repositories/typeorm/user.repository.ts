@@ -18,7 +18,7 @@ export class UserRepository implements IUserRepository {
   }
 
   async findById(id: number): Promise<UserEntity> {
-    return await this.repository.findOne({ where: { user_id: id } });
+    return await this.repository.findOne({ where: { id } });
   }
 
   async findByEmail(email: string): Promise<UserEntity> {
@@ -30,13 +30,13 @@ export class UserRepository implements IUserRepository {
     const expiration = Envs.EXPIRATION_TOKEN;
 
     const payload = {
-      id: data.user_id,
+      id: data.id,
       email: data.email,
     };
 
     const options = {
       expiresIn: expiration,
-      subject: String(data.user_id),
+      subject: String(data.id),
     };
 
     return sign(payload, secret, options);
@@ -53,11 +53,13 @@ export class UserRepository implements IUserRepository {
     return data;
   }
 
-  async delete(user_id: number): Promise<void> {
-    await this.repository.delete({ user_id });
+  async delete(id: number): Promise<void> {
+    await this.repository.delete({ id });
   }
 
   async findAll(): Promise<UserEntity[]> {
-    return await this.repository.find();
+    return await this.repository.find({
+      relations: ['decks']
+    });
   }
 }

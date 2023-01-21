@@ -1,10 +1,6 @@
 import { connection } from '@configs/database/database.config';
-import { AnswerModule } from '@modules/answer/answer.module';
-import { AnswerEntity } from '@modules/answer/domain/entities/answer.entity';
-import { FormEntity } from '@modules/form/domain/entities/form.entity';
-import { FormModule } from '@modules/form/form.module';
-import { QuestionEntity } from '@modules/question/domain/entities/question.entity';
-import { QuestionModule } from '@modules/question/question.module';
+import { DeckModule } from '@modules/deck/deck.module';
+import { DeckEntity } from '@modules/deck/domain/entities/deck.entity';
 import { UserEntity } from '@modules/user/domain/entities/user.entity';
 import { UserModule } from '@modules/user/user.module';
 import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
@@ -17,12 +13,10 @@ import { AppService } from './app.service';
   imports: [
     TypeOrmModule.forRoot({
       ...connection,
-      entities: [UserEntity, FormEntity, QuestionEntity, AnswerEntity],
+      entities: [UserEntity, DeckEntity],
     }),
     UserModule,
-    FormModule,
-    QuestionModule,
-    AnswerModule,
+    DeckModule
   ],
   controllers: [AppController],
   providers: [AppService],

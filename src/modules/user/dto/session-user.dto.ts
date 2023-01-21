@@ -11,8 +11,9 @@ export class SessionUserDto {
 }
 
 export class SessionUserServiceOutPut extends OmitType(UserEntity, [
-  'user_id',
+  'id',
   'password',
+  'decks',
   'created_at',
   'updated_at',
 ]) {}

@@ -4,12 +4,15 @@ import {
   Entity,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
+  JoinColumn,
 } from 'typeorm';
+import { DeckEntity } from '@modules/deck/domain/entities/deck.entity';
 
 @Entity('tbl_user')
 export class UserEntity {
   @PrimaryGeneratedColumn()
-  user_id: number;
+  id: number;
 
   @Column({ nullable: false })
   name: string;
@@ -24,6 +27,10 @@ export class UserEntity {
     default: true,
   })
   status: boolean;
+
+  @JoinColumn({ name: 'decks' })
+  @OneToMany(() => DeckEntity, deck => deck.user)
+  decks: DeckEntity[]
 
   @CreateDateColumn()
   created_at: Date;
