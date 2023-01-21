@@ -9,7 +9,7 @@ export class UpdateDeckService {
   constructor(@Inject(DeckRepository) private readonly deck: IDeckRepository) {}
 
   public async execute(id: number, data: UpdateDeckDto): Promise<DeckEntity> {
-    const oldDeck = await this.deck.findOne({ Deck_id: id });
+    const oldDeck = await this.deck.findOne({ id });
 
     if (!oldDeck) throw new NotFoundException('Deck not found');
 

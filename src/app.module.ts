@@ -1,6 +1,8 @@
 import { connection } from '@configs/database/database.config';
 import { DeckModule } from '@modules/deck/deck.module';
 import { DeckEntity } from '@modules/deck/domain/entities/deck.entity';
+import { FlashcardEntity } from '@modules/flashcard/domain/entities/flashcard.entity';
+import { FlashcardModule } from '@modules/flashcard/flashcard.module';
 import { UserEntity } from '@modules/user/domain/entities/user.entity';
 import { UserModule } from '@modules/user/user.module';
 import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
@@ -13,10 +15,11 @@ import { AppService } from './app.service';
   imports: [
     TypeOrmModule.forRoot({
       ...connection,
-      entities: [UserEntity, DeckEntity],
+      entities: [UserEntity, DeckEntity, FlashcardEntity],
     }),
     UserModule,
-    DeckModule
+    DeckModule,
+    FlashcardModule
   ],
   controllers: [AppController],
   providers: [AppService],

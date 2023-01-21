@@ -29,7 +29,7 @@ export class DeckRepository implements IDeckRepository {
 
   async findAll(): Promise<DeckEntity[]> {
     return await this.repository.find({
-      relations: ['user']
+      relations: ['user', 'flashcards']
     });
   }
 

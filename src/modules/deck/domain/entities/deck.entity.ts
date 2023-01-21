@@ -1,3 +1,4 @@
+import { FlashcardEntity } from '@modules/flashcard/domain/entities/flashcard.entity';
 import { UserEntity } from '@modules/user/domain/entities/user.entity';
 import {
   PrimaryGeneratedColumn,
@@ -37,6 +38,9 @@ export class DeckEntity {
   @JoinColumn({ name: "user" })
   @ManyToOne(() => UserEntity, user => user.decks, { onDelete: 'CASCADE' })
   user: UserEntity
+
+  @OneToMany(() => FlashcardEntity, user => user.deck)
+  flashcards: FlashcardEntity[]
 
   @CreateDateColumn()
   created_at: Date;
