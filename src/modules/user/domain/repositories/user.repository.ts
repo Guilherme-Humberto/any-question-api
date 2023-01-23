@@ -4,9 +4,7 @@ import { UpdateUserDto } from '@modules/user/dto/update-user.dto';
 import { UserEntity } from '../entities/user.entity';
 
 export interface IUserRepository {
-  findOneUser(where: object): Promise<UserEntity>;
-  findById(id: number): Promise<UserEntity>;
-  findByEmail(email: string): Promise<UserEntity>;
+  findOne(parameter: Partial<UserEntity>): Promise<UserEntity>;
   create(data: CreateUserDto): Promise<UserEntity>;
   session(data: SessionUserDto): string;
   update(data: UpdateUserDto): Promise<UserEntity>;

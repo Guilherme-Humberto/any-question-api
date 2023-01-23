@@ -20,7 +20,7 @@ export class CreateDeckService {
 
   public async execute(data: CreateDeckDto): Promise<DeckEntity> {
     const deck = await this.deck.findOne({ title: data.title });
-    const user = await this.user.findById(data.user);
+    const user = await this.user.findOne({ id: data.user });
 
     if (!user) throw new NotFoundException('User not found');
     if (deck) throw new BadRequestException('Deck already exists');

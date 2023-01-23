@@ -4,7 +4,7 @@ export const passportSessionConfig = {
   secret: Envs.SECRET_TOKEN,
   saveUninitialized: false,
   resave: false,
-  cookie: { maxAge: 86400000 },
+  cookie: { maxAge: Envs.COOKIE_MAXAGE },
 };
 
 export const globalPipesConfig = {

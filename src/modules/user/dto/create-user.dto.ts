@@ -14,4 +14,8 @@ export class CreateUserDto {
   @IsBoolean()
   @IsOptional()
   status: boolean;
+
+  @IsString()
+  @IsOptional()
+  type_auth?: string;
 }

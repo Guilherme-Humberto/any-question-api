@@ -1,19 +1,24 @@
+import { Module } from '@nestjs/common';
 import { UserEntity } from '@modules/user/domain/entities/user.entity';
 import { UserRepository } from '@modules/user/infra/repositories/typeorm/user.repository';
-import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthController } from './infra/http/controllers/auth.controller';
+import { GoogleAuthController } from './infra/http/controllers/google/google-auth.controller';
 import { GoogleAuthService } from './services/google-auth.service';
 import { SerializerAuth } from './utils/serializer/serializer-auth';
+import { GitHubAuthStrategy } from './utils/strategies/github/github.strategy';
 import { GoogleAuthStrategy } from './utils/strategies/google/google.strategy';
+import { GitHubAuthController } from './infra/http/controllers/github/github-auth.controller';
+import { GitHubAuthService } from './services/github-auth.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserEntity])],
-  controllers: [AuthController],
+  controllers: [GoogleAuthController, GitHubAuthController],
   providers: [
     GoogleAuthStrategy,
+    GitHubAuthStrategy,
     UserRepository,
     GoogleAuthService,
+    GitHubAuthService,
     SerializerAuth,
   ],
 })

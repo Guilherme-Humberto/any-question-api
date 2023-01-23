@@ -1,6 +1,8 @@
 export class Envs {
   public static readonly PORT = Number(process.env.PORT) || 3000;
   public static readonly SECRET_TOKEN = String(process.env.SECRET_TOKEN);
+  public static readonly COOKIE_MAXAGE =
+    Number(process.env.COOKIE_MAXAGE) || 86400000;
   public static readonly EXPIRATION_TOKEN = String(
     process.env.EXPIRATION_TOKEN,
   );
@@ -15,7 +17,16 @@ export class Envs {
   public static readonly GOOGLE_AUTH_CLIENT_SECRET = String(
     process.env.GOOGLE_AUTH_CLIENT_SECRET,
   );
-  public static readonly GOOGLE_AUTH_REDIRECT = String(
-    process.env.GOOGLE_AUTH_REDIRECT,
+  public static readonly GOOGLE_AUTH_CALLBACK_URL = String(
+    process.env.GOOGLE_AUTH_CALLBACK_URL,
+  );
+  public static readonly GITHUB_AUTH_CLIENT_ID = String(
+    process.env.GITHUB_AUTH_CLIENT_ID,
+  );
+  public static readonly GITHUB_AUTH_CLIENT_SECRET = String(
+    process.env.GITHUB_AUTH_CLIENT_SECRET,
+  );
+  public static readonly GITHUB_AUTH_CALLBACK_URL = String(
+    process.env.GITHUB_AUTH_CALLBACK_URL,
   );
 }

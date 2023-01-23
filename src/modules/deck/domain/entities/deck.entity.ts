@@ -1,5 +1,3 @@
-import { FlashcardEntity } from '@modules/flashcard/domain/entities/flashcard.entity';
-import { UserEntity } from '@modules/user/domain/entities/user.entity';
 import {
   PrimaryGeneratedColumn,
   Column,
@@ -11,16 +9,18 @@ import {
   ManyToOne,
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
+import { FlashcardEntity } from '@modules/flashcard/domain/entities/flashcard.entity';
+import { UserEntity } from '@modules/user/domain/entities/user.entity';
 
 @Entity('tbl_deck')
 export class DeckEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ nullable: false })
+  @Column({ type: 'varchar', nullable: false })
   title: string;
 
-  @Column({ nullable: false })
+  @Column({ type: 'varchar', length: 500, nullable: false })
   description: string;
 
   @Column({
@@ -31,16 +31,17 @@ export class DeckEntity {
   code: string;
 
   @Column({
+    type: 'tinyint',
     default: true,
   })
   status: boolean;
 
-  @JoinColumn({ name: "user" })
-  @ManyToOne(() => UserEntity, user => user.decks, { onDelete: 'CASCADE' })
-  user: number
+  @JoinColumn({ name: 'user' })
+  @ManyToOne(() => UserEntity, (user) => user.decks, { onDelete: 'CASCADE' })
+  user: number;
 
-  @OneToMany(() => FlashcardEntity, user => user.deck)
-  flashcards: FlashcardEntity[]
+  @OneToMany(() => FlashcardEntity, (user) => user.deck)
+  flashcards: FlashcardEntity[];
 
   @CreateDateColumn()
   created_at: Date;

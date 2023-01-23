@@ -6,7 +6,7 @@ import { ValidateAuthDto } from '../dto/validate-auth.dto';
 import { generateJwtToken } from '@shared/utils/generate-jwt-token';
 
 @Injectable()
-export class GoogleAuthService {
+export class GitHubAuthService {
   constructor(@Inject(UserRepository) private readonly user: IUserRepository) {}
 
   async createNewUser(data: ValidateAuthDto) {
@@ -17,14 +17,14 @@ export class GoogleAuthService {
       email: data.email,
       status: true,
       password: passwordHash,
-      type_auth: 'google',
+      type_auth: 'github',
     });
   }
 
   async validate(data: ValidateAuthDto) {
     let user = await this.user.findOne({
       email: data.email,
-      type_auth: 'google',
+      type_auth: 'github',
     });
     if (!user) user = await this.createNewUser(data);
 
