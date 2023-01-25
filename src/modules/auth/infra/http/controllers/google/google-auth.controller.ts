@@ -14,6 +14,6 @@ export class GoogleAuthController {
     setCookie('user.token', request.user.token);
     setCookie('user.data', JSON.stringify(request.user.data));
 
-    return response.redirect(`http://localhost:3000`);
+    return response.redirect(Envs.FRONTEND_URL);
   }
 }

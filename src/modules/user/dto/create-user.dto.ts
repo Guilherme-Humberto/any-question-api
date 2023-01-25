@@ -8,7 +8,6 @@ export class CreateUserDto {
   email: string;
 
   @IsString()
-  @Length(8, 16)
   password: string;
 
   @IsBoolean()

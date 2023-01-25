@@ -1,5 +1,6 @@
 export class Envs {
   public static readonly PORT = Number(process.env.PORT) || 3000;
+  public static readonly FRONTEND_URL = String(process.env.FRONTEND_URL);
   public static readonly SECRET_TOKEN = String(process.env.SECRET_TOKEN);
   public static readonly COOKIE_MAXAGE =
     Number(process.env.COOKIE_MAXAGE) || 86400000;
