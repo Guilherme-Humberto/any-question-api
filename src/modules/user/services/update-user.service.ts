@@ -18,7 +18,7 @@ export class UpdateUserService {
     const oldUser = await this.user.findOne({ id });
     if (!oldUser) throw new NotFoundException('User not found');
 
-    if (oldUser.email !== data.email) {
+    if (data.email && oldUser.email !== data.email) {
       const hasSameEmail = await this.user.findOne({ email: data.email });
       if (hasSameEmail) throw new BadRequestException('User already exists');
     }

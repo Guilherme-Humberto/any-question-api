@@ -8,13 +8,13 @@ import { DeckRepository } from '../infra/repositories/typeorm/deck.repository';
 export class UpdateDeckService {
   constructor(@Inject(DeckRepository) private readonly deck: IDeckRepository) {}
 
-  public async execute(id: number, data: UpdateDeckDto): Promise<DeckEntity> {
+  public async execute(id: number, data: UpdateDeckDto): Promise<void> {
     const oldDeck = await this.deck.findOne({ id });
 
     if (!oldDeck) throw new NotFoundException('Deck not found');
 
     const newUser = Object.assign(oldDeck, data);
 
-    return await this.deck.update(newUser);
+    await this.deck.update(newUser);
   }
 }

@@ -21,8 +21,8 @@ export class SessionUserService {
     if (!comparePasswords) throw new BadRequestException('invalid password');
 
     const token = this.user.session(user);
-    const { name, email, status } = user;
+    const { id, name, email, status } = user;
 
-    return { user: { name, email, status }, token };
+    return { user: { id, name, email, status }, token };
   }
 }

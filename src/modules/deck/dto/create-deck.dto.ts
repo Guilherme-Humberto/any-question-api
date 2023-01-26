@@ -1,3 +1,4 @@
+import { UserEntity } from '@modules/user/domain/entities/user.entity';
 import { IsBoolean, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateDeckDto {

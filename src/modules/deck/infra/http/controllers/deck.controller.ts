@@ -14,7 +14,9 @@ import {
   Param,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
+import { Pagination } from 'nestjs-typeorm-paginate';
 
 @Controller('deck')
 export class DeckController {
@@ -26,8 +28,14 @@ export class DeckController {
   ) {}
 
   @Get('/list')
-  async findAll(): Promise<DeckEntity[]> {
-    return await this.findAllService.execute();
+  async findAll(
+    @Query('page') page: string,
+    @Query('limit') limit: string,
+  ): Promise<Pagination<DeckEntity> | DeckEntity[]> {
+    return await this.findAllService.execute({
+      limit: limit || null,
+      page: page || null,
+    });
   }
 
   @Post('/create')
@@ -39,8 +47,9 @@ export class DeckController {
   async update(
     @Param('id') id: string,
     @Body() data: UpdateDeckDto,
-  ): Promise<DeckEntity> {
-    return await this.updateService.execute(Number(id), data);
+  ): Promise<string> {
+    await this.updateService.execute(Number(id), data);
+    return 'updated';
   }
 
   @Delete('/delete/:id')

@@ -33,9 +33,12 @@ import { AppService } from './app.service';
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(AuthMiddleware).exclude({
-      path: '/healhCheck',
-      method: RequestMethod.GET,
-    });
+    consumer
+      .apply(AuthMiddleware)
+      .exclude({
+        path: '/healhCheck',
+        method: RequestMethod.GET,
+      })
+      .forRoutes('deck');
   }
 }
