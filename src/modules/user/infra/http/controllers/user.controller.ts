@@ -1,33 +1,23 @@
 import { UserEntity } from '@modules/user/domain/entities/user.entity';
 import { CreateUserDto } from '@modules/user/dto/create-user.dto';
-import {
-  LoginUserOutPut,
-  SessionUserDto,
-} from '@modules/user/dto/session-user.dto';
 import { UpdateUserDto } from '@modules/user/dto/update-user.dto';
 import { CreateUserService } from '@modules/user/services/create-user.service';
 import { DeleteUserService } from '@modules/user/services/delete-user.service';
 import { FindAllUserService } from '@modules/user/services/find-user.service';
-import { SessionUserService } from '@modules/user/services/session-user.service';
 import { UpdateUserService } from '@modules/user/services/update-user.service';
 import {
   Body,
   Controller,
   Delete,
   Get,
-  Inject,
   Param,
   Post,
   Put,
-  Res,
 } from '@nestjs/common';
-import { Envs } from '@shared/envs/envs';
-import { Response } from 'express';
 
 @Controller('User')
 export class UserController {
   constructor(
-    private readonly sessionService: SessionUserService,
     private readonly createService: CreateUserService,
     private readonly updateService: UpdateUserService,
     private readonly findAllService: FindAllUserService,
@@ -42,22 +32,6 @@ export class UserController {
   @Post('/create')
   async create(@Body() data: CreateUserDto): Promise<void> {
     await this.createService.execute(data);
-  }
-
-  @Post('/login')
-  async login(
-    @Body() data: SessionUserDto,
-    @Res() response: Response,
-  ): Promise<any> {
-    const result = await this.sessionService.execute(data);
-    const setCookie = (name: string, content: string) => {
-      response.cookie(name, content, { maxAge: Envs.COOKIE_MAXAGE });
-    };
-
-    setCookie('user.token', result.token);
-    setCookie('user.data', JSON.stringify(result.user));
-
-    return response.json(result);
   }
 
   @Put('/update/:id')

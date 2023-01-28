@@ -6,7 +6,7 @@ import { Envs } from '@shared/envs/envs';
 export class GoogleAuthController {
   @Get('/google/login')
   @UseGuards(GoogleAuthGuard)
-  async GoogleLoginRedirect(@Req() request, @Res() response) {
+  async GoogleLoginAuth(@Req() request, @Res() response) {
     const setCookie = (name: string, content: string) => {
       response.cookie(name, content, { maxAge: Envs.COOKIE_MAXAGE });
     };
@@ -14,6 +14,7 @@ export class GoogleAuthController {
     setCookie('user.token', request.user.token);
     setCookie('user.data', JSON.stringify(request.user.data));
 
-    return response.redirect(Envs.FRONTEND_URL);
+    const application = `${Envs.FRONTEND_URL}/admin`;
+    return response.redirect(application);
   }
 }

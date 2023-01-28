@@ -15,7 +15,10 @@ import {
   Post,
   Put,
   Query,
+  Req,
 } from '@nestjs/common';
+import { CustomRequest } from '@shared/interfaces';
+import { Request } from 'express';
 import { Pagination } from 'nestjs-typeorm-paginate';
 
 @Controller('deck')
@@ -39,8 +42,14 @@ export class DeckController {
   }
 
   @Post('/create')
-  async create(@Body() data: CreateDeckDto): Promise<DeckEntity> {
-    return await this.createService.execute(data);
+  async create(
+    @Body() data: CreateDeckDto,
+    @Req() request: CustomRequest,
+  ): Promise<DeckEntity> {
+    return await this.createService.execute({
+      ...data,
+      user: request.user.id,
+    });
   }
 
   @Put('/update/:id')
