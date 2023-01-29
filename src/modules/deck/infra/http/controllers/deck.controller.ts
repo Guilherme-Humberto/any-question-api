@@ -10,7 +10,6 @@ import {
   Controller,
   Delete,
   Get,
-  Inject,
   Param,
   Post,
   Put,
@@ -56,8 +55,12 @@ export class DeckController {
   async update(
     @Param('id') id: string,
     @Body() data: UpdateDeckDto,
+    @Req() request: CustomRequest,
   ): Promise<string> {
-    await this.updateService.execute(Number(id), data);
+    await this.updateService.execute(Number(id), {
+      ...data,
+      user: request.user.id,
+    });
     return 'updated';
   }
 

@@ -8,7 +8,6 @@ import {
   JoinColumn,
   ManyToOne,
 } from 'typeorm';
-import { v4 as uuid } from 'uuid';
 import { FlashcardEntity } from '@modules/flashcard/domain/entities/flashcard.entity';
 import { UserEntity } from '@modules/user/domain/entities/user.entity';
 
@@ -22,13 +21,6 @@ export class DeckEntity {
 
   @Column({ type: 'varchar', length: 500, nullable: false })
   description: string;
-
-  @Column({
-    unique: true,
-    nullable: false,
-    default: uuid(),
-  })
-  code: string;
 
   @Column({
     type: 'tinyint',

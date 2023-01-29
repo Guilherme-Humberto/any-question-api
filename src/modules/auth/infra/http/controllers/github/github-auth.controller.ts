@@ -14,6 +14,7 @@ export class GitHubAuthController {
     setCookie('user.token', request.user.token);
     setCookie('user.data', JSON.stringify(request.user.data));
 
-    return response.redirect(Envs.FRONTEND_URL);
+    const application = `${Envs.FRONTEND_URL}/admin`;
+    return response.redirect(application);
   }
 }
