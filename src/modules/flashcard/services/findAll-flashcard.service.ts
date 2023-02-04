@@ -6,10 +6,11 @@ import { FlashcardRepository } from '../infra/repositories/typeorm/flashcard.rep
 @Injectable()
 export class FindAllFlashcardService {
   constructor(
-    @Inject(FlashcardRepository) private readonly flashcard: IFlashcardRepository,
+    @Inject(FlashcardRepository)
+    private readonly flashcard: IFlashcardRepository,
   ) {}
 
-  public async execute(): Promise<FlashcardEntity[]> {
-    return await this.flashcard.findAll();
+  public async execute(deckId: number): Promise<FlashcardEntity[]> {
+    return await this.flashcard.findAll(deckId);
   }
 }

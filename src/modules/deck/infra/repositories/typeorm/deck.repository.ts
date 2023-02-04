@@ -47,17 +47,17 @@ export class DeckRepository implements IDeckRepository {
     if (options.page && options.limit) {
       return paginate<DeckEntity>(this.repository, options, {
         where: { user: { id: this.request.user.id } },
-        relations: ['user', 'flashcards'],
+        relations: ['flashcards'],
       });
     }
 
     return await this.repository.find({
       where: { user: { id: this.request.user.id } },
-      relations: ['user', 'flashcards'],
+      relations: ['flashcards'],
     });
   }
 
   async findOne(where: object): Promise<DeckEntity> {
-    return await this.repository.findOne({ where });
+    return await this.repository.findOne({ where, relations: ['flashcards'] });
   }
 }

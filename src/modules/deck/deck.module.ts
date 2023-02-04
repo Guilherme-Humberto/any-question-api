@@ -7,7 +7,8 @@ import { DeckController } from './infra/http/controllers/deck.controller';
 import { DeckRepository } from './infra/repositories/typeorm/deck.repository';
 import { CreateDeckService } from './services/create-deck.service';
 import { DeleteDeckService } from './services/delete-deck.service';
-import { FindAllDeckService } from './services/find-deck.service';
+import { FindAllDeckService } from './services/findAll-deck.service';
+import { FindByIdDeckService } from './services/findById-deck.service';
 import { UpdateDeckService } from './services/update-deck.service';
 
 @Module({
@@ -19,6 +20,7 @@ import { UpdateDeckService } from './services/update-deck.service';
     CreateDeckService,
     UpdateDeckService,
     FindAllDeckService,
+    FindByIdDeckService,
     DeleteDeckService,
   ],
 })

@@ -36,7 +36,7 @@ export class FlashcardEntity {
   status: string;
 
   @JoinColumn({ name: 'deck' })
-  @ManyToOne(() => DeckEntity, (deck) => deck.flashcards)
+  @ManyToOne(() => DeckEntity, (deck) => deck.id)
   deck: number;
 
   @OneToMany(() => TagEntity, (tag) => tag.flashcard)

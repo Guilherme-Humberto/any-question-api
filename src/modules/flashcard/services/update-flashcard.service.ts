@@ -6,10 +6,17 @@ import { FlashcardRepository } from '../infra/repositories/typeorm/flashcard.rep
 
 @Injectable()
 export class UpdateFlashcardService {
-  constructor(@Inject(FlashcardRepository) private readonly flashcard: IFlashcardRepository) {}
+  constructor(
+    @Inject(FlashcardRepository)
+    private readonly flashcard: IFlashcardRepository,
+  ) {}
 
-  public async execute(id: number, data: UpdateFlashcardDto): Promise<FlashcardEntity> {
-    const oldFlashcard = await this.flashcard.findOne({ Flashcard_id: id });
+  public async execute(
+    id: number,
+    deckId: number,
+    data: UpdateFlashcardDto,
+  ): Promise<FlashcardEntity> {
+    const oldFlashcard = await this.flashcard.findOne({ id, deck: deckId });
 
     if (!oldFlashcard) throw new NotFoundException('Flashcard not found');
 

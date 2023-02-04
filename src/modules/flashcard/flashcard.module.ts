@@ -7,7 +7,7 @@ import { FlashcardController } from './infra/http/controllers/flashcard.controll
 import { FlashcardRepository } from './infra/repositories/typeorm/flashcard.repository';
 import { CreateFlashcardService } from './services/create-flashcard.service';
 import { DeleteFlashcardService } from './services/delete-flashcard.service';
-import { FindAllFlashcardService } from './services/find-flashcard.service';
+import { FindAllFlashcardService } from './services/findAll-flashcard.service';
 import { UpdateFlashcardService } from './services/update-flashcard.service';
 
 @Module({

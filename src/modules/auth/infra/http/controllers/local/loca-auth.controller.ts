@@ -42,7 +42,6 @@ export class LocalAuthController {
     setCookie('user.token', result.token);
     setCookie('user.data', JSON.stringify(result.user));
 
-    const application = `${Envs.FRONTEND_URL}/admin`;
-    return response.redirect(application);
+    return response.json(result);
   }
 }
