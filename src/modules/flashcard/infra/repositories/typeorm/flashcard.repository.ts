@@ -26,13 +26,13 @@ export class FlashcardRepository implements IFlashcardRepository {
   async delete(id: number, deckId: number): Promise<void> {
     await this.repository.delete({
       id,
-      deck: deckId,
+      deck: { id: deckId },
     });
   }
 
   async findAll(deckId: number): Promise<FlashcardEntity[]> {
     return await this.repository.find({
-      where: { deck: deckId },
+      where: { deck: { id: deckId } },
       relations: ['deck', 'tags'],
     });
   }

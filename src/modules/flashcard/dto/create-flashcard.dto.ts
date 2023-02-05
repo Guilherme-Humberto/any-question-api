@@ -13,5 +13,5 @@ export class CreateFlashcardDto {
   status: string;
 
   @IsNumber()
-  deck: number;
+  deck: DeckEntity;
 }
