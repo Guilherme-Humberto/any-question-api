@@ -43,9 +43,12 @@ export class TagController {
     return await this.updateService.execute(Number(id), data);
   }
 
-  @Delete('/delete/:id')
-  async delete(@Param('id') id: string): Promise<string> {
-    await this.deleteService.execute(Number(id));
+  @Delete('/delete/:id/flashcard/:flashcardId')
+  async delete(
+    @Param('id') id: string,
+    @Param('flashcardId') flashcardId: string,
+  ): Promise<string> {
+    await this.deleteService.execute(Number(id), Number(flashcardId));
     return 'deleted';
   }
 }

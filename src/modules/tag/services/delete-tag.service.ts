@@ -4,11 +4,9 @@ import { TagRepository } from '../infra/repositories/typeorm/tag.repository';
 
 @Injectable()
 export class DeleteTagService {
-  constructor(
-    @Inject(TagRepository) private readonly tag: ITagRepository,
-  ) {}
+  constructor(@Inject(TagRepository) private readonly tag: ITagRepository) {}
 
-  public async execute(id: number): Promise<void> {
-    await this.tag.delete(id);
+  public async execute(id: number, flashcardId: number): Promise<void> {
+    await this.tag.delete(id, flashcardId);
   }
 }

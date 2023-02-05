@@ -23,13 +23,16 @@ export class TagRepository implements ITagRepository {
     return data;
   }
 
-  async delete(id: number): Promise<void> {
-    await this.repository.delete(id);
+  async delete(id: number, flashcardId: number): Promise<void> {
+    await this.repository.delete({
+      id,
+      flashcard: flashcardId,
+    });
   }
 
   async findAll(): Promise<TagEntity[]> {
     return await this.repository.find({
-      relations: ['flashcard']
+      relations: ['flashcard'],
     });
   }
 

@@ -5,7 +5,7 @@ import { TagEntity } from '../entities/tag.entity';
 export interface ITagRepository {
   create(data: CreateTagDto): Promise<TagEntity>;
   update(data: UpdateTagDto): Promise<TagEntity>;
-  delete(id: number): Promise<void>;
+  delete(id: number, flashcardId: number): Promise<void>;
   findAll(): Promise<TagEntity[]>;
   findOne(where: object): Promise<TagEntity>;
 }
